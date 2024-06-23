@@ -27,6 +27,7 @@ param storageName string
 @description('Storage SKU')
 param storageSkuName string = 'Standard_LRS'
 
+//storage account name should not have any hyphen
 var storageNameCleaned = replace(storageName, '-', '')
 
 @description('Unique Suffix for Resources.')
@@ -53,7 +54,7 @@ resource aiServices 'Microsoft.CognitiveServices/accounts@2021-10-01' = {
   }
 }
 
-resource computeNode 'Microsoft.Compute/virtualMachines@2021-07-01' = {
+resource computeNode 'Microsoft.Compute/virtualMachines@2023-09-01' = {
   name: 'computeNode-${uniqueSuffix}'
   location: location
   properties: {
@@ -64,7 +65,7 @@ resource computeNode 'Microsoft.Compute/virtualMachines@2021-07-01' = {
       imageReference: {
         publisher: 'Canonical'
         offer: 'UbuntuServer'
-        sku: '20.04-LTS'
+        sku: '22.04-LTS'
         version: 'latest'
       }
       osDisk: {
