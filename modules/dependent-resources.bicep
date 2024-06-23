@@ -64,8 +64,8 @@ resource computeNode 'Microsoft.Compute/virtualMachines@2023-09-01' = {
     storageProfile: {
       imageReference: {
         publisher: 'Canonical'
-        offer: '0001-com-ubuntu-server-focal'
-        sku: '20_04-lts-gen2'
+        offer: 'UbuntuServer'
+        sku: '20_04-lts'
         version: 'latest'
       }
       osDisk: {

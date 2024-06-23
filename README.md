@@ -24,9 +24,10 @@ An 'Azure AI hub' is a special kind of 'Azure Machine Learning workspace', that 
 The following table describes the resources created in the deployment:
 
 | Provider and type | Description |
-| `Microsoft.Compute/accounts` | An Azure VM Compute |
-| `Microsoft.CognitiveServices/accounts` | An Azure AI Services as the model-as-a-service endpoint provider (allowed kinds: 'AIServices' and 'OpenAI') |
-| `Microsoft.MachineLearningServices/workspaces` | An Azure AI hub (Azure Machine Learning RP workspace of kind 'hub') |
+| - | - |
+| `Microsoft.Compute` | `An Azure VM Compute` |
+| `Microsoft.CognitiveServices` | `An Azure AI Services as the model-as-a-service endpoint provider` |
+| `Microsoft.MachineLearningServices` | `An Azure AI Hub` |
 
 
 ## Learn more
