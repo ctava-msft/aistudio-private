@@ -57,6 +57,7 @@ module aiHub 'modules/aistudio-hub.bicep' = {
     // dependent resources
     aiServicesId: aiDependencies.outputs.aiservicesID
     aiServicesTarget: aiDependencies.outputs.aiservicesTarget
+    computeNodeId: aiDependencies.outputs.computeNodeId
     keyVaultId: aiDependencies.outputs.keyvaultId
     storageAccountId: aiDependencies.outputs.storageId
   }

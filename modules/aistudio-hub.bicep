@@ -1,9 +1,3 @@
-@description('Azure region of the deployment')
-param location string
-
-@description('Tags to add to the resources')
-param tags object
-
 @description('AI hub name')
 param aiHubName string
 
@@ -13,17 +7,26 @@ param aiHubFriendlyName string = aiHubName
 @description('AI hub description')
 param aiHubDescription string
 
+@description('Resource ID of the AI Services resource')
+param aiServicesId string
+
+@description('Resource ID of the AI Services endpoint')
+param aiServicesTarget string
+
+@description('Resource ID of the Compute Node resource for the AI hub')
+param computeNodeId string
+
 @description('Resource ID of the key vault resource for storing connection strings')
 param keyVaultId string
 
 @description('Resource ID of the storage account resource for storing experimentation outputs')
 param storageAccountId string
 
-@description('Resource ID of the AI Services resource')
-param aiServicesId string
+@description('Azure region of the deployment')
+param location string
 
-@description('Resource ID of the AI Services endpoint')
-param aiServicesTarget string
+@description('Tags to add to the resources')
+param tags object
 
 resource aiHub 'Microsoft.MachineLearningServices/workspaces@2023-10-01' = {
   name: aiHubName

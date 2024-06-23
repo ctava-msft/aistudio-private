@@ -166,5 +166,6 @@ resource storage 'Microsoft.Storage/storageAccounts@2022-09-01' = {
 
 output aiservicesID string = aiServices.id
 output aiservicesTarget string = aiServices.properties.endpoint
+output computeNodeId string = computeNode.id
 output storageId string = storage.id
 output keyvaultId string = keyVault.id

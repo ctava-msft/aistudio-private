@@ -12,10 +12,10 @@
           "value": "AI Hub Private GEN-UNIQUE-8"
       },
       "computeNodeAdminUserName": {
-        "value": "adminUser"
+        "value": "<redacted>"
       },
       "computeNodeAdminPassword": {
-        "value": "Password1234!"
+        "value": "<redacted>"
       },
       "location": {
           "value": "eastus"

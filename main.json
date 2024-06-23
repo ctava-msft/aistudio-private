@@ -5,13 +5,13 @@
     "_generator": {
       "name": "bicep",
       "version": "0.28.1.47646",
-      "templateHash": "4040435542887453622"
+      "templateHash": "3538029695057289658"
     }
   },
   "parameters": {
     "aiHubName": {
       "type": "string",
-      "defaultValue": "aihub-private",
+      "defaultValue": "AI Hub Name",
       "minLength": 2,
       "maxLength": 14,
       "metadata": {
@@ -20,16 +20,29 @@
     },
     "aiHubFriendlyName": {
       "type": "string",
-      "defaultValue": "AI Private Hub",
+      "defaultValue": "AI Hub Friendly Name",
       "metadata": {
         "description": "Friendly name for your Azure AI resource"
       }
     },
     "aiHubDescription": {
       "type": "string",
-      "defaultValue": "This hub has publicNetworkAccess: disabled. Its compute is also behind a private VNET.",
+      "defaultValue": "AI Hub Description",
       "metadata": {
         "description": "Description of your Azure AI resource dispayed in AI studio"
+      }
+    },
+    "computeNodeAdminUserName": {
+      "type": "string",
+      "metadata": {
+        "description": "ComputeNode Admin User Name"
+      }
+    },
+    "computeNodeAdminPassword": {
+      "type": "securestring",
+      "minLength": 4,
+      "metadata": {
+        "description": "ComputeNode Admin User Password"
       }
     },
     "location": {
@@ -62,6 +75,15 @@
         },
         "mode": "Incremental",
         "parameters": {
+          "aiServicesName": {
+            "value": "[format('ais{0}{1}', variables('name'), variables('uniqueSuffix'))]"
+          },
+          "computeNodeAdminUserName": {
+            "value": "[parameters('computeNodeAdminUserName')]"
+          },
+          "computeNodeAdminPassword": {
+            "value": "[parameters('computeNodeAdminPassword')]"
+          },
           "location": {
             "value": "[parameters('location')]"
           },
@@ -70,9 +92,6 @@
           },
           "keyvaultName": {
             "value": "[format('kv-{0}-{1}', variables('name'), variables('uniqueSuffix'))]"
-          },
-          "aiServicesName": {
-            "value": "[format('ais{0}{1}', variables('name'), variables('uniqueSuffix'))]"
           },
           "tags": {
             "value": "[parameters('tags')]"
@@ -85,20 +104,19 @@
             "_generator": {
               "name": "bicep",
               "version": "0.28.1.47646",
-              "templateHash": "14720421365759258284"
+              "templateHash": "12652730840371313409"
             }
           },
           "parameters": {
             "computeNodeAdminUserName": {
               "type": "string",
-              "defaultValue": "adminUser",
               "metadata": {
                 "description": "ComputeNode Admin User Name"
               }
             },
             "computeNodeAdminPassword": {
-              "type": "string",
-              "defaultValue": "adminUser",
+              "type": "securestring",
+              "minLength": 4,
               "metadata": {
                 "description": "ComputeNode Admin User Password"
               }
@@ -300,6 +318,10 @@
               "type": "string",
               "value": "[reference(resourceId('Microsoft.CognitiveServices/accounts', parameters('aiServicesName')), '2021-10-01').endpoint]"
             },
+            "computeNodeId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Compute/virtualMachines', format('computeNode-{0}', parameters('uniqueSuffix')))]"
+            },
             "storageId": {
               "type": "string",
               "value": "[resourceId('Microsoft.Storage/storageAccounts', variables('storageNameCleaned'))]"
@@ -343,6 +365,9 @@
           "aiServicesTarget": {
             "value": "[reference(resourceId('Microsoft.Resources/deployments', format('dependencies-{0}-{1}-deployment', variables('name'), variables('uniqueSuffix'))), '2022-09-01').outputs.aiservicesTarget.value]"
           },
+          "computeNodeId": {
+            "value": "[reference(resourceId('Microsoft.Resources/deployments', format('dependencies-{0}-{1}-deployment', variables('name'), variables('uniqueSuffix'))), '2022-09-01').outputs.computeNodeId.value]"
+          },
           "keyVaultId": {
             "value": "[reference(resourceId('Microsoft.Resources/deployments', format('dependencies-{0}-{1}-deployment', variables('name'), variables('uniqueSuffix'))), '2022-09-01').outputs.keyvaultId.value]"
           },
@@ -357,22 +382,10 @@
             "_generator": {
               "name": "bicep",
               "version": "0.28.1.47646",
-              "templateHash": "14164265255526320404"
+              "templateHash": "9652506182191790244"
             }
           },
           "parameters": {
-            "location": {
-              "type": "string",
-              "metadata": {
-                "description": "Azure region of the deployment"
-              }
-            },
-            "tags": {
-              "type": "object",
-              "metadata": {
-                "description": "Tags to add to the resources"
-              }
-            },
             "aiHubName": {
               "type": "string",
               "metadata": {
@@ -392,6 +405,24 @@
                 "description": "AI hub description"
               }
             },
+            "aiServicesId": {
+              "type": "string",
+              "metadata": {
+                "description": "Resource ID of the AI Services resource"
+              }
+            },
+            "aiServicesTarget": {
+              "type": "string",
+              "metadata": {
+                "description": "Resource ID of the AI Services endpoint"
+              }
+            },
+            "computeNodeId": {
+              "type": "string",
+              "metadata": {
+                "description": "Resource ID of the Compute Node resource for the AI hub"
+              }
+            },
             "keyVaultId": {
               "type": "string",
               "metadata": {
@@ -404,16 +435,16 @@
                 "description": "Resource ID of the storage account resource for storing experimentation outputs"
               }
             },
-            "aiServicesId": {
+            "location": {
               "type": "string",
               "metadata": {
-                "description": "Resource ID of the AI Services resource"
+                "description": "Azure region of the deployment"
               }
             },
-            "aiServicesTarget": {
-              "type": "string",
+            "tags": {
+              "type": "object",
               "metadata": {
-                "description": "Resource ID of the AI Services endpoint"
+                "description": "Tags to add to the resources"
               }
             }
           },
