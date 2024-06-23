@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.28.1.47646",
-      "templateHash": "3538029695057289658"
+      "templateHash": "11650386113750604837"
     }
   },
   "parameters": {
@@ -76,7 +76,7 @@
         "mode": "Incremental",
         "parameters": {
           "aiServicesName": {
-            "value": "[format('ais{0}{1}', variables('name'), variables('uniqueSuffix'))]"
+            "value": "[format('ai-{0}{1}', variables('name'), variables('uniqueSuffix'))]"
           },
           "computeNodeAdminUserName": {
             "value": "[parameters('computeNodeAdminUserName')]"
@@ -88,7 +88,7 @@
             "value": "[parameters('location')]"
           },
           "storageName": {
-            "value": "[format('st{0}{1}', variables('name'), variables('uniqueSuffix'))]"
+            "value": "[format('st-{0}{1}', variables('name'), variables('uniqueSuffix'))]"
           },
           "keyvaultName": {
             "value": "[format('kv-{0}-{1}', variables('name'), variables('uniqueSuffix'))]"

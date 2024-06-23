@@ -33,11 +33,11 @@ var uniqueSuffix = substring(uniqueString(resourceGroup().id), 0, 4)
 module aiDependencies 'modules/dependent-resources.bicep' = {
   name: 'dependencies-${name}-${uniqueSuffix}-deployment'
   params: {
-    aiServicesName: 'ais${name}${uniqueSuffix}'
+    aiServicesName: 'ai-${name}${uniqueSuffix}'
     computeNodeAdminUserName: computeNodeAdminUserName
     computeNodeAdminPassword: computeNodeAdminPassword
     location: location
-    storageName: 'st${name}${uniqueSuffix}'
+    storageName: 'st-${name}${uniqueSuffix}'
     keyvaultName: 'kv-${name}-${uniqueSuffix}'
     tags: tags
   }
