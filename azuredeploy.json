@@ -265,7 +265,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2022-09-01",
-      "name": "[format('ai-{0}-{1}-deployment', variables('name'), variables('uniqueSuffix'))]",
+      "name": "[format('{0}-{1}-deployment', variables('name'), variables('uniqueSuffix'))]",
       "properties": {
         "expressionEvaluationOptions": {
           "scope": "inner"
@@ -273,7 +273,7 @@
         "mode": "Incremental",
         "parameters": {
           "aiHubName": {
-            "value": "[format('aih-{0}-{1}', variables('name'), variables('uniqueSuffix'))]"
+            "value": "[format('{0}-{1}', variables('name'), variables('uniqueSuffix'))]"
           },
           "aiHubFriendlyName": {
             "value": "[parameters('aiHubFriendlyName')]"
@@ -281,23 +281,26 @@
           "aiHubDescription": {
             "value": "[parameters('aiHubDescription')]"
           },
-          "location": {
-            "value": "[parameters('location')]"
-          },
-          "tags": {
-            "value": "[parameters('tags')]"
-          },
           "aiServicesId": {
             "value": "[reference(resourceId('Microsoft.Resources/deployments', format('dependencies-{0}-{1}-deployment', variables('name'), variables('uniqueSuffix'))), '2022-09-01').outputs.aiservicesID.value]"
           },
           "aiServicesTarget": {
             "value": "[reference(resourceId('Microsoft.Resources/deployments', format('dependencies-{0}-{1}-deployment', variables('name'), variables('uniqueSuffix'))), '2022-09-01').outputs.aiservicesTarget.value]"
           },
+          "computeNodeId": {
+            "value": "[reference(resourceId('Microsoft.Resources/deployments', format('dependencies-{0}-{1}-deployment', variables('name'), variables('uniqueSuffix'))), '2022-09-01').outputs.computeNodeAdminUserName.value]"
+          },
+          "location": {
+            "value": "[parameters('location')]"
+          },
           "keyVaultId": {
             "value": "[reference(resourceId('Microsoft.Resources/deployments', format('dependencies-{0}-{1}-deployment', variables('name'), variables('uniqueSuffix'))), '2022-09-01').outputs.keyvaultId.value]"
           },
           "storageAccountId": {
             "value": "[reference(resourceId('Microsoft.Resources/deployments', format('dependencies-{0}-{1}-deployment', variables('name'), variables('uniqueSuffix'))), '2022-09-01').outputs.storageId.value]"
+          },
+          "tags": {
+            "value": "[parameters('tags')]"
           }
         },
         "template": {
@@ -342,6 +345,24 @@
                 "description": "AI hub description"
               }
             },
+            "aiServicesId": {
+              "type": "string",
+              "metadata": {
+                "description": "Resource ID of the AI Services resource"
+              }
+            },
+            "aiServicesTarget": {
+              "type": "string",
+              "metadata": {
+                "description": "Resource ID of the AI Services endpoint"
+              }
+            },
+            "computeNodeId": {
+              "type": "string",
+              "metadata": {
+                "description": "Resource ID of the compute Node resource"
+              }
+            },
             "keyVaultId": {
               "type": "string",
               "metadata": {
@@ -354,18 +375,6 @@
                 "description": "Resource ID of the storage account resource for storing experimentation outputs"
               }
             },
-            "aiServicesId": {
-              "type": "string",
-              "metadata": {
-                "description": "Resource ID of the AI Services resource"
-              }
-            },
-            "aiServicesTarget": {
-              "type": "string",
-              "metadata": {
-                "description": "Resource ID of the AI Services endpoint"
-              }
-            }
           },
           "resources": [
             {
@@ -401,6 +410,7 @@
               "properties": {
                 "friendlyName": "[parameters('aiHubFriendlyName')]",
                 "description": "[parameters('aiHubDescription')]",
+                "computeNode": "[parameters('computeNodeId')]",
                 "keyVault": "[parameters('keyVaultId')]",
                 "storageAccount": "[parameters('storageAccountId')]"
               },
