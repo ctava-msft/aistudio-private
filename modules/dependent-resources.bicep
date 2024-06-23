@@ -54,7 +54,7 @@ resource computeNode 'Microsoft.Compute/virtualMachines@2021-07-01' = {
   location: location
   properties: {
     hardwareProfile: {
-      vmSize: 'Standard_A1_v2'
+      vmSize: 'Standard_B1ls2'
     }
     storageProfile: {
       imageReference: {
