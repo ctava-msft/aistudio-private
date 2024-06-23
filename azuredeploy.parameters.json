@@ -18,7 +18,7 @@
         "value": "<redacted>"
       },
       "computeNodeVMSize": {
-        "value": "Standard_A1_v2"
+        "value": "Standard_B16ps_v2"
       },
       "location": {
           "value": "eastus"
