@@ -9,7 +9,7 @@
         "value": "This AI hub has publicNetworkAccess: disabled. Its compute is also behind a private VNET."
       },
       "aiHubName": {
-          "value": "AI Hub Private GEN-UNIQUE-8"
+          "value": "AI Hub Private"
       },
       "computeNodeAdminUserName": {
         "value": "<redacted>"
