@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "aiHubFriendlyName": {
+        "value": "AI Hub Private"
+      },
+      "aiHubDescription": {
+        "value": "This AI hub has publicNetworkAccess: disabled. Its compute is also behind a private VNET."
+      },
+      "aiHubName": {
+          "value": "AIHubPrivate"
+      },
+      "computeNodeAdminUserName": {
+        "value": "<redacted>"
+      },
+      "computeNodeAdminPassword": {
+        "value": "<redacted>"
+      },
+      "computeNodeVMSize": {
+        "value": "Standard_B1ls2"
+      },
+      "location": {
+          "value": "eastus"
+      },
+      "tags":{
+          "value": {}
+      }
+    }
+}

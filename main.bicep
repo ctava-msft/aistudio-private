@@ -2,10 +2,10 @@
 @minLength(2)
 @maxLength(14)
 @description('Name for the AI resource and used to derive name of dependent resources.')
-param aiHubName string = 'AI Hub Name'
+param aiHubName string = 'AIHubName'
 
 @description('Friendly name for your Azure AI resource')
-param aiHubFriendlyName string = 'AI Hub Friendly Name'
+param aiHubFriendlyName string = 'AIHubFriendlyName'
 
 @description('Description of your Azure AI resource dispayed in AI studio')
 param aiHubDescription string = 'AI Hub Description'
@@ -16,6 +16,9 @@ param computeNodeAdminUserName string
 @secure()
 @description('ComputeNode Admin User Password')
 param computeNodeAdminPassword string
+
+@description('ComputeNode VM Size')
+param computeNodeVMSize string
 
 @description('Azure region used for the deployment of all resources.')
 param location string = resourceGroup().location
@@ -36,6 +39,7 @@ module aiDependencies 'modules/dependent-resources.bicep' = {
     aiServicesName: 'ai-${name}${uniqueSuffix}'
     computeNodeAdminUserName: computeNodeAdminUserName
     computeNodeAdminPassword: computeNodeAdminPassword
+    computeNodeVMSize: computeNodeVMSize
     location: location
     storageName: 'st-${name}${uniqueSuffix}'
     keyvaultName: 'kv-${name}-${uniqueSuffix}'

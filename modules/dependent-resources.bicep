@@ -6,6 +6,9 @@ param computeNodeAdminUserName string
 @description('ComputeNode Admin User Password')
 param computeNodeAdminPassword string
 
+@description('Compute Node VM Size')
+param computeNodeVMSize string
+
 @description('AI services name')
 param aiServicesName string
 
@@ -26,6 +29,7 @@ param storageSkuName string = 'Standard_LRS'
 
 var storageNameCleaned = replace(storageName, '-', '')
 
+@description('Unique Suffix for Resources.')
 param uniqueSuffix string = '001'
 
 @description('Tags to add to the resources')
@@ -54,7 +58,7 @@ resource computeNode 'Microsoft.Compute/virtualMachines@2021-07-01' = {
   location: location
   properties: {
     hardwareProfile: {
-      vmSize: 'Standard_B1ls2'
+      vmSize: computeNodeVMSize
     }
     storageProfile: {
       imageReference: {

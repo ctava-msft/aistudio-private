@@ -1,4 +1,4 @@
-@description('AI hub name')
+@description('AI Hub Name')
 param aiHubName string
 
 @description('AI hub display name')
@@ -49,22 +49,22 @@ resource aiHub 'Microsoft.MachineLearningServices/workspaces@2023-10-01' = {
   }
   kind: 'hub'
 
-  resource aiServicesConnection 'connections@2024-01-01-preview' = {
-    name: '${aiHubName}-connection-AzureOpenAI'
-    properties: {
-      category: 'AzureOpenAI'
-      target: aiServicesTarget
-      authType: 'ApiKey'
-      isSharedToAll: true
-      credentials: {
-        key: '${listKeys(aiServicesId, '2021-10-01').key1}'
-      }
-      metadata: {
-        ApiType: 'Azure'
-        ResourceId: aiServicesId
-      }
-    }
-  }
+  // resource aiServicesConnection 'connections@2024-01-01-Preview' = {
+  //   name: '${aiHubName}-connection'
+  //   properties: {
+  //     category: 'AzureOpenAI'
+  //     target: aiServicesTarget
+  //     authType: 'ApiKey'
+  //     isSharedToAll: true
+  //     credentials: {
+  //       key: '${listKeys(aiServicesId, '2021-10-01').key1}'
+  //     }
+  //     metadata: {
+  //       ApiType: 'Azure'
+  //       ResourceId: aiServicesId
+  //     }
+  //   }
+  // }
 }
 
 output aiHubID string = aiHub.id

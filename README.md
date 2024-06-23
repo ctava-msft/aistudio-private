@@ -21,17 +21,13 @@ An 'Azure AI hub' is a special kind of 'Azure Machine Learning workspace', that 
 
 ## Resources
 
-The following table describes the resources involved in the deployment:
+The following table describes the resources created in the deployment:
 
 | Provider and type | Description |
-| - | - |
-| `Microsoft.Resources/resourceGroups` | The resource group all resources get deployed into |
-| `Microsoft.Insights/components` | An Azure Application Insights instance associated to the Azure Machine Learning workspace |
-| `Microsoft.KeyVault/vaults` | An Azure Key Vault instance associated to the Azure Machine Learning workspace |
-| `Microsoft.Storage/storageAccounts` | An Azure Storage instance associated to the Azure Machine Learning workspace |
-| `Microsoft.ContainerRegistry/registries` | An Azure Container Registry instance associated to the Azure Machine Learning workspace |
-| `Microsoft.MachineLearningServices/workspaces` | An Azure AI hub (Azure Machine Learning RP workspace of kind 'hub') |
+| `Microsoft.Compute/accounts` | An Azure VM Compute |
 | `Microsoft.CognitiveServices/accounts` | An Azure AI Services as the model-as-a-service endpoint provider (allowed kinds: 'AIServices' and 'OpenAI') |
+| `Microsoft.MachineLearningServices/workspaces` | An Azure AI hub (Azure Machine Learning RP workspace of kind 'hub') |
+
 
 ## Learn more
 
