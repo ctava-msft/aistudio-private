@@ -11,7 +11,7 @@
   "parameters": {
     "aiHubName": {
       "type": "string",
-      "defaultValue": "demo-private",
+      "defaultValue": "AI Hub Private",
       "minLength": 2,
       "maxLength": 12,
       "metadata": {
@@ -20,14 +20,14 @@
     },
     "aiHubFriendlyName": {
       "type": "string",
-      "defaultValue": "Demo Private AI resource",
+      "defaultValue": "AI Hub Private Resources",
       "metadata": {
         "description": "Friendly name for your Azure AI resource"
       }
     },
     "aiHubDescription": {
       "type": "string",
-      "defaultValue": "This is an example AI resource for use in Azure AI Studio.",
+      "defaultValue": "This AI hub has publicNetworkAccess: disabled. Its compute is also behind a private VNET..",
       "metadata": {
         "description": "Description of your Azure AI resource dispayed in AI studio"
       }
